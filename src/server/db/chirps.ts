@@ -12,15 +12,12 @@ const add = async (chirp: {
     location: string
 }) => Query(`insert into chirps (userid, text, location) values(${chirp.userid}, "${chirp.text}", "${chirp.location}")`);
 
-const update = async (id: string, chirp: {
-    userid: string,
-    text: string,
-    location: string
-}) => Query(`update chirps set text = "This is working too @starla!" where id = 95`);
+const update = async (id: string, chirp: {text: string}) => Query(`update chirps set text = "${chirp.text}" where id = ${id}`);
 
 export default {
     all,
     single,
     remove,
-    add
+    add,
+    update
 };

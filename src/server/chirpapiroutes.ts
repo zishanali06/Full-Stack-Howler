@@ -34,9 +34,15 @@ chirpRouter.post("/api/chirp/", async (req, res) => {
     console.log(req.body);
 });
 
-chirpRouter.put("/api/chirp/:id", (req, res) => {
-    chirpStore.UpdateChirp(req.params.id, req.body);
-    res.sendStatus(200);
+chirpRouter.put("/api/chirp/:id", async (req, res) => {
+    try{
+        await db.Chirps.update(req.params.id, req.body);
+        res.sendStatus(200);
+    } catch(e) {
+        console.log(e);
+        res.sendStatus(500);
+    };
+    console.log(`${req.params.id} is the id and ${req.body} is the body`);
 });
 
 chirpRouter.delete("/api/chirp/:id", async (req, res) => {
