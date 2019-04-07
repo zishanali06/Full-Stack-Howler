@@ -11,11 +11,11 @@ export default class Chirpchange extends React.Component<IChirpchangeProps, IChi
     }
 
     async componentDidMount() {
-        let getchirpdata = await fetch('/api/chirp');
+        let getchirpdata = await fetch(`/api/chirp/${this.props.match.params.id}`);
         let name = await getchirpdata.json();
         this.setState({
-            usertext: name[this.props.match.params.id].username,
-            chirptext: name[this.props.match.params.id].chirp
+            usertext: name[0].username,
+            chirptext: name[0].text
         })
     }
 

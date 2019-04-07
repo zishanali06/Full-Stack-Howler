@@ -18,16 +18,15 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
     async componentDidMount() {
         let getchirpdata = await fetch('/api/chirp');
         let name = await getchirpdata.json();
-        console.log(name[0]);
+        console.log(name);
         let newchirparray = Object.keys(name).map(id => {
             return {
-                id,
+                id: name[id].id,
                 user: name[id].username,
                 chirp: name[id].chirp
             }
         });
         console.log(newchirparray);
-        newchirparray.pop();
         this.setState({
             chirpArray: newchirparray,
             count: name.nextid

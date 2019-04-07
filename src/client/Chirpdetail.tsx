@@ -11,11 +11,12 @@ export default class Chirpdetail extends React.Component<IChirpdetailProps, IChi
         }
     }
     async componentDidMount() {
-        let getchirpdata = await fetch('/api/chirp');
+        let getchirpdata = await fetch(`/api/chirp/${this.props.match.params.id}`);
         let name = await getchirpdata.json();
+        console.log(name);
         this.setState({
-            user: name[this.props.match.params.id].username,
-            chirp: name[this.props.match.params.id].chirp
+            user: name[0].username,
+            chirp: name[0].text
         })
     }
 
