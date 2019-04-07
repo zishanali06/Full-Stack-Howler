@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as chirpStore from './chirpstore';
 import db from './db';
 const chirpRouter = express.Router();
 
@@ -31,7 +30,6 @@ chirpRouter.post("/api/chirp/", async (req, res) => {
         console.log(e);
         res.sendStatus(500);
     };
-    console.log(req.body);
 });
 
 chirpRouter.put("/api/chirp/:id", async (req, res) => {
@@ -42,7 +40,7 @@ chirpRouter.put("/api/chirp/:id", async (req, res) => {
         console.log(e);
         res.sendStatus(500);
     };
-    console.log(`${req.params.id} is the id and ${req.body} is the body`);
+    console.log(`${req.params.id} is the id and ${JSON.stringify(req.body)} is the body`);
 });
 
 chirpRouter.delete("/api/chirp/:id", async (req, res) => {

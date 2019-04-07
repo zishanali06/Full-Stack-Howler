@@ -22,9 +22,10 @@ export default class Chirpchange extends React.Component<IChirpchangeProps, IChi
     handleonClick = (e: React.MouseEvent) => {
         e.preventDefault();
         let chirp = {
-            username: this.state.usertext,
-            chirp: this.state.chirptext
+            text: this.state.chirptext
         }
+        console.log(chirp);
+        console.log(this.props.match.params.id);
         fetch(`/api/chirp/${this.props.match.params.id}`, {
             method: "PUT",
             mode: "cors",
