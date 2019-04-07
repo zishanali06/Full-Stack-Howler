@@ -10,7 +10,8 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
             chirpArray: [],
             user: "",
             chirptext: "",
-            count: 1001
+            count: 1001,
+            location: ""
         }
     }
 
@@ -29,17 +30,17 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
         console.log(newchirparray);
         this.setState({
             chirpArray: newchirparray,
-            count: name.nextid
+            count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
         });
     }
 
     handleonClick = (e: React.MouseEvent) => {
         e.preventDefault();
         let chirp = {
-            username: this.state.user,
-            chirp: this.state.chirptext
+            userid: this.state.user,
+            text: this.state.chirptext,
+            location: this.state.location
         };
-
         fetch('/api/chirp', {
             method: "POST",
             mode: "cors",
@@ -54,8 +55,8 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
         }).then(() => {
             let chirptoaddinarray = {
                 id: this.state.count.toString(),
-                user: chirp.username,
-                chirp: chirp.chirp
+                user: chirp.userid,
+                chirp: chirp.text
             }
             this.setState({
                 chirpArray: [...this.state.chirpArray, chirptoaddinarray],
@@ -85,10 +86,16 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                                 onChange={e => this.setState({ chirptext: e.target.value })} />
                             <input
                                 type="text"
-                                placeholder="Type Username Here"
+                                placeholder="Type UserID Here"
                                 className="my-3 form-control"
                                 value={this.state.user}
                                 onChange={e => this.setState({ user: e.target.value })} />
+                            <input
+                                type="text"
+                                placeholder="Type Location Here"
+                                className="my-3 form-control"
+                                value={this.state.location}
+                                onChange={e => this.setState({ location: e.target.value })} />
                             <br />
                             <button className="btn btn-outline-primary btn-sm" onClick={this.handleonClick}>Click to Add <img src="http://joshi-ma.net/wp-content/uploads/e034.gif" alt="" /></button>
                         </form>
@@ -116,5 +123,6 @@ interface ITimelineState {
     }[];
     user: string;
     chirptext: string;
+    location: string;
     count: number;
 }
