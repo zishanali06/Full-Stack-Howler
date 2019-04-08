@@ -6,10 +6,6 @@ export default class Chirps extends React.Component<IChirpProps, IChirpState> {
         super(props)
     }
 
-    componentDidMount() {
-        
-    }
-
     render() {
 
         // let user = this.props.chirp.user;
