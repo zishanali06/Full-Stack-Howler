@@ -19,7 +19,7 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
     async componentDidMount() {
         let getchirpdata = await fetch('/api/chirp');
         let name = await getchirpdata.json();
-        console.log(name);
+        //map thru results by key ID
         let newchirparray = Object.keys(name).map(id => {
             return {
                 id: name[id].id,
@@ -27,7 +27,6 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                 chirp: name[id].chirp
             }
         });
-        console.log(newchirparray);
         this.setState({
             chirpArray: newchirparray,
             count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
@@ -52,18 +51,21 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
             redirect: "follow",
             referrer: "no-referrer",
             body: JSON.stringify(chirp) // body data type must match "Content-Type" header
-        }).then(() => {
-            let chirptoaddinarray = {
-                id: this.state.count.toString(),
-                user: chirp.userid,
-                chirp: chirp.text
-            }
+        }).then(async (results) => {
+            //SENT NEW DATA BACK AS RESPONSE AND TAKING THAT RESPONSE AND SETTING AS NEW ARRAY WITH NEW CHIRP
+            let newdata = await results.json();
+            //map thru results by key ID
+            let newchirparray = Object.keys(newdata).map(id => {
+                return {
+                    id: newdata[id].id,
+                    user: newdata[id].username,
+                    chirp: newdata[id].chirp
+                }
+            });
             this.setState({
-                chirpArray: [...this.state.chirpArray, chirptoaddinarray],
-                user: "",
-                chirptext: "",
-                count: this.state.count + 1
-            })
+                chirpArray: newchirparray,
+                count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
+            });
         }).catch((err) => console.log(err));
     }
 

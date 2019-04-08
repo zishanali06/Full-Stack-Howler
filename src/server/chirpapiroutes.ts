@@ -25,7 +25,7 @@ chirpRouter.get("/api/chirp/:id?", async (req, res) =>{
 chirpRouter.post("/api/chirp/", async (req, res) => {
     try{
         await db.Chirps.add(req.body);
-        res.sendStatus(200);
+        res.json(await db.Chirps.all());
     } catch(e) {
         console.log(e);
         res.sendStatus(500);
