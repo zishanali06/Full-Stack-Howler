@@ -32,6 +32,7 @@ chirpRouter.post("/api/chirp/", async (req, res) => {
     };
 });
 
+//changing a chirp
 chirpRouter.put("/api/chirp/:id", async (req, res) => {
     try{
         await db.Chirps.update(req.params.id, req.body);
@@ -43,6 +44,7 @@ chirpRouter.put("/api/chirp/:id", async (req, res) => {
     console.log(`${req.params.id} is the id and ${JSON.stringify(req.body)} is the body`);
 });
 
+//deleting a chirp
 chirpRouter.delete("/api/chirp/:id", async (req, res) => {
     try{
         await db.Chirps.remove(req.params.id);
