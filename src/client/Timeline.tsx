@@ -28,7 +28,7 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
             }
         });
         this.setState({
-            chirpArray: newchirparray,
+            chirpArray: newchirparray.reverse(),
             count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
         });
     }
@@ -62,7 +62,7 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                     }
                 });
                 this.setState({
-                    chirpArray: newchirparray,
+                    chirpArray: newchirparray.reverse(),
                     count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
                 });
             })
