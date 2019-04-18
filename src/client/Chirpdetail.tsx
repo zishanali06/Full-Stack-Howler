@@ -7,7 +7,8 @@ export default class Chirpdetail extends React.Component<IChirpdetailProps, IChi
         super(props)
         this.state = {
             user: "",
-            chirp: ""
+            chirp: "",
+            location: ""
         }
     }
     async componentDidMount() {
@@ -15,8 +16,9 @@ export default class Chirpdetail extends React.Component<IChirpdetailProps, IChi
         let name = await getchirpdata.json();
         this.setState({
             user: name[0].username,
-            chirp: name[0].text
-        })
+            chirp: name[0].text,
+            location: name[0].location
+        });
     }
 
     handleDeleteClick = (e: React.MouseEvent) => {
@@ -49,6 +51,7 @@ export default class Chirpdetail extends React.Component<IChirpdetailProps, IChi
                 <section className="col-8">
                     <h3>Username: {this.state.user}</h3>
                     <h3>Chirp: {this.state.chirp}</h3>
+                    <h5>Location: {this.state.location}</h5>
                     <Link to={`/chirp/${this.props.match.params.id}/edit`} className="btn btn-dark">Change Chirp</Link>
                 </section>
                 <section className="col-2">
@@ -66,5 +69,6 @@ interface IChirpdetailProps extends RouteComponentProps<{ id: string }> {
 
 interface IChirpdetailState {
     user: string,
-    chirp: string
+    chirp: string,
+    location: string
 }
