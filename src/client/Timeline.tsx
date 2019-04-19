@@ -105,8 +105,8 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                     <section className="col-4"></section>
                 </section>
                 <section className="row">
-                    <section className="col-md-4">
-                        <form className="form-group p-3 border border-info rounded col-md-12">
+                    <section className="col-md-4 bg-warning">
+                        <form className="form-group p-3 border border-info rounded col-md-12 bg-light mt-3">
                             <input
                                 type="text"
                                 placeholder="Type Chirp Here"
@@ -129,7 +129,7 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                             <button className="btn btn-outline-primary btn-sm" onClick={this.handleonClick}>Click to Add <img src="http://joshi-ma.net/wp-content/uploads/e034.gif" alt="" /></button>
                         </form>
                     </section>
-                    <section className="col-md-6">
+                    <section className="col-md-6 bg-primary">
                         {this.state.chirpArray.map((chirp) => {
                             return <Chirps chirp={chirp} key={chirp.id} />
                         })}

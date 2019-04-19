@@ -13,8 +13,8 @@ export default class Chirps extends React.Component<IChirpProps, IChirpState> {
         // ABOVE IS SAME AS BELOW
         const { user, chirp } = this.props.chirp;
         return (
-            <div className="d-flex justify-content-between border border-secondary rounded1 m-1">
-                <div><p className="mt-2 ml-2"><img
+            <div className="d-flex justify-content-between border border-secondary rounded1 m-1 bg-secondary">
+                <div><p className="mt-2 ml-2 text-light"><img
                 src="http://joshi-ma.net/wp-content/uploads/e034.gif" 
                 alt="" /><span className="font-weight-bold">{`  ${user}`}</span>{`: ${chirp}`}</p></div><div><Link to={`/chirp/${this.props.chirp.id}`}>
                 <button className="btn btn-success btn-sm align-right mt-2 mr-3">Details</button></Link></div>
