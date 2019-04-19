@@ -14,9 +14,9 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
             chirptext: "",
             count: 1001,
             location: ""
-        }; 
-        let socket = 3;
+        };
     }
+    private socket: any = null;
 
 
     async componentDidMount() {
@@ -35,8 +35,8 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
         });
 
         //using socket
-        let socket = io.connect();
-        socket.on('newChirp', async () => {
+        this.socket = io.connect();
+        this.socket.on('newChirp', async () => {
             let getchirpdata = await fetch('/api/chirp');
             let name = await getchirpdata.json();
             let newchirparray = Object.keys(name).map(id => {
@@ -46,7 +46,6 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                     chirp: name[id].chirp
                 }
             });
-            socket.disconnect();
             this.setState({
                 chirpArray: newchirparray.reverse(),
                 count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
@@ -55,8 +54,8 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
         //end of socket
     }
 
-    componentWillUnmount(){
-        
+    componentWillUnmount() {
+        this.socket.disconnect();
     }
 
     handleonClick = (e: React.MouseEvent) => {
@@ -141,7 +140,7 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
 }
 
 interface ITimelineProps {
-    socket: any;
+
 }
 
 interface ITimelineState {
