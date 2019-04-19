@@ -44,8 +44,8 @@ export default class Chirpchange extends React.Component<IChirpchangeProps, IChi
         return (
             <section className="row text-center">
                 <section className="col-12"><h1>Chirp Detials</h1></section>
-                <section className="col-4"></section>
-                <section className="col-4">
+                <section className="col-md-4"></section>
+                <section className="col-md-4">
                     <h3>Change Chirp</h3>
                     <form className="form-group p-3 border border-info rounded col-md-12">
                         <input
@@ -64,7 +64,7 @@ export default class Chirpchange extends React.Component<IChirpchangeProps, IChi
                         <button className="btn btn-outline-primary btn-sm" onClick={this.handleonClick}>Change Chirp <img src="http://joshi-ma.net/wp-content/uploads/e034.gif" alt="" /></button>
                     </form>
                 </section>
-                <section className="col-4"></section>
+                <section className="col-md-4"></section>
             </section>
         )
     }

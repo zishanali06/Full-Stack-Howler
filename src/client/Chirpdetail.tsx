@@ -48,15 +48,16 @@ export default class Chirpdetail extends React.Component<IChirpdetailProps, IChi
             <section className="row text-center">
                 <section className="col-12"><h1>Chirp Detials</h1></section>
                 <section className="col-2"></section>
-                <section className="col-8">
-                    <h3>Username: {this.state.user}</h3>
-                    <h3>Chirp: {this.state.chirp}</h3>
-                    <h5>Location: {this.state.location}</h5>
+                <section className="col-8 border border-primary rounded">
+                    <h4>Username: {this.state.user}</h4>
+                    <h5>Chirp: {this.state.chirp}</h5>
+                    <h6>Location: {this.state.location}</h6>
                     <Link to={`/chirp/${this.props.match.params.id}/edit`} className="btn btn-dark">Change Chirp</Link>
+                    <button className="btn btn-danger m-1" onClick={this.handleDeleteClick}>Delete</button>
+                    <button className="btn btn-secondary m-1" onClick={this.handleBackClick}>Back</button>
                 </section>
                 <section className="col-2">
-                    <button className="btn btn-danger" onClick={this.handleDeleteClick}>Delete</button>
-                    <button className="btn btn-secondary" onClick={this.handleBackClick}>Back</button>
+                    
                 </section>
             </section>
         )

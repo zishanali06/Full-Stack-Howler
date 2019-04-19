@@ -2,6 +2,7 @@ import * as React from 'react';
 import Chirps from './Chirp';
 import * as io from 'socket.io-client';
 import { Socket } from 'dgram';
+let http = require('http');
 
 export default class Timeline extends React.Component<ITimelineProps, ITimelineState> {
 
