@@ -28,6 +28,4 @@ app.get('*', (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server listening on port: ${port}`);
-});
+server.listen(port, () => console.log(`Server listening on port: \x1b[33m${port}\x1b[0m`));
