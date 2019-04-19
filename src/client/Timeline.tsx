@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Chirps from './Chirp';
 import * as io from 'socket.io-client';
+import { Socket } from 'dgram';
 
 export default class Timeline extends React.Component<ITimelineProps, ITimelineState> {
 
@@ -45,13 +46,17 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                     chirp: name[id].chirp
                 }
             });
+            socket.disconnect();
             this.setState({
                 chirpArray: newchirparray.reverse(),
                 count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
             });
-
         });
         //end of socket
+    }
+
+    componentWillUnmount(){
+        
     }
 
     handleonClick = (e: React.MouseEvent) => {
