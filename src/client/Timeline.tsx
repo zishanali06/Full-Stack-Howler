@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Chirps from './Chirp';
+import * as io from 'socket.io-client';
 
 export default class Timeline extends React.Component<ITimelineProps, ITimelineState> {
 
@@ -12,14 +13,14 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
             chirptext: "",
             count: 1001,
             location: ""
-        }
+        }; 
+        let socket = 3;
     }
 
 
     async componentDidMount() {
         let getchirpdata = await fetch('/api/chirp');
         let name = await getchirpdata.json();
-        console.log(name);
         let newchirparray = Object.keys(name).map(id => {
             return {
                 id: name[id].id,
@@ -31,6 +32,26 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
             chirpArray: newchirparray.reverse(),
             count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
         });
+
+        //using socket
+        let socket = io.connect();
+        socket.on('newChirp', async () => {
+            let getchirpdata = await fetch('/api/chirp');
+            let name = await getchirpdata.json();
+            let newchirparray = Object.keys(name).map(id => {
+                return {
+                    id: name[id].id,
+                    user: name[id].username,
+                    chirp: name[id].chirp
+                }
+            });
+            this.setState({
+                chirpArray: newchirparray.reverse(),
+                count: (parseInt(newchirparray[newchirparray.length - 1].id, 10) + 1)
+            });
+
+        });
+        //end of socket
     }
 
     handleonClick = (e: React.MouseEvent) => {
@@ -115,7 +136,7 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
 }
 
 interface ITimelineProps {
-
+    socket: any;
 }
 
 interface ITimelineState {

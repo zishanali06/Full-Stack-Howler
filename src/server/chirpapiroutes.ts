@@ -1,5 +1,6 @@
 import * as express from 'express';
 import db from './db';
+import { io } from './server';
 const chirpRouter = express.Router();
 
 chirpRouter.get("/api/chirp/:id?", async (req, res) =>{
@@ -25,6 +26,7 @@ chirpRouter.get("/api/chirp/:id?", async (req, res) =>{
 chirpRouter.post("/api/chirp/", async (req, res) => {
     try{
         await db.Chirps.add(req.body);
+        io.emit('newChirp');
         res.json(await db.Chirps.all());
     } catch(e) {
         console.log(e);
