@@ -101,11 +101,11 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
             <React.Fragment>
                 <section className="row">
                     <section className="col-4"></section>
-                    <section className="col-4"><h3 className="text-center">Timeline</h3></section>
+                    <section className="col-4"><h3 className="text-center text-light">Timeline</h3></section>
                     <section className="col-4"></section>
                 </section>
                 <section className="row">
-                    <section className="col-md-4 bg-warning">
+                    <section className="col-md-4">
                         <form className="form-group p-3 border border-info rounded col-md-12 bg-light mt-3">
                             <input
                                 type="text"
@@ -129,10 +129,29 @@ export default class Timeline extends React.Component<ITimelineProps, ITimelineS
                             <button className="btn btn-outline-primary btn-sm" onClick={this.handleonClick}>Click to Add <img src="http://joshi-ma.net/wp-content/uploads/e034.gif" alt="" /></button>
                         </form>
                     </section>
-                    <section className="col-md-6 bg-primary">
+                    <section className="col-md-6">
                         {this.state.chirpArray.map((chirp) => {
                             return <Chirps chirp={chirp} key={chirp.id} />
                         })}
+                    </section>
+                    <section className="row">
+                        <section className="col-12"><h3 className="text-center text-light">Made by ZishanTheDon</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">Show bottom</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">This</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">is</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">very</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">nice</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">background</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">image</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">Made</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">BY</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">ZishanTheDon</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">Show bottom</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">Show bottom</h3></section>
+                        <section className="col-12"><h3 className="text-center text-light">Show bottom</h3></section>
+                    </section>
+                    <section className="row">
+                        <section className="col-12"><h3 className="text-center text-light">Made by ZishanTheDon</h3></section>
                     </section>
                 </section>
             </React.Fragment>

@@ -22,9 +22,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
     render () {
         return (
-            <main className="container">
+            <main className="container bg1">
                 <section className="row text-center">
-                    <h1 className="col-12">Howler Plus!</h1>
+                    <h1 className="col-12 text-light">Howler Plus!</h1>
                 </section>
                 <Router>
                     <Switch>
